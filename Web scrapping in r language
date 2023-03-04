@@ -1,1 +1,48 @@
-hello there
+##############ASG######################
+
+
+olympic =read.csv('Winter.csv')
+View(olympic)
+str(olympic)
+
+olympic$gender=as.factor(olympic$Gender)
+olympic$medal=as.factor(olympic$Medal)
+olympic$Country=as.factor(olympic$Country)
+olympic$Sport=as.factor(olympic$Sport)
+
+str(olympic)
+
+library(ggplot2)
+ggplot(olympic,aes(x=Country,fill=medal))+ geom_bar()
+
+
+
+ggplot(olympic,aes(x=medal,fill=gender))+
+  theme_light()+
+  geom_bar()+
+  labs(y="Year", title="olymbic medal scored by men and women")
+ ggplot(olympic,aes(x=Year,fill=medal))+
+   theme_light()+
+   geom_bar()+
+   labs( y="number of medals",title ="medal scored in each year")
+
+ ggplot(olympic,aes(x=Sport,fill=medal))+
+   theme_bw()+
+   facet_wrap(gender~Sport)+
+   geom_density(alpha=(2))+
+   labs(y="Sports",x="gender",title="medal scored in each sport with gender")
+
+ 
+ ggplot(olympic,aes(x=Sport,fill=Discipline))+
+   theme_dark()+
+   geom_histogram(stat="count")+
+   labs(y=" ",x="Sport",title="medal scored in each sport")
+
+ggplot(olympic,aes(x="",fill=medal))+
+  geom_bar(position="fill")+
+  facet_grid(~Gender)+
+  coord_polar(theta="y")
+ggplot(olympic,aes(x=Sport,fill=medal))+
+  theme_dark()+
+  geom_histogram(stat="count")+
+  labs(y=" ",x="Sport",title="medal scored in each sport")
